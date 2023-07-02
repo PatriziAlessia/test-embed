@@ -18,28 +18,20 @@ import {
 } from './styles'
 
 const Upload = ({ canStillUpload }) => {
-    const [files, setFiles] = useState([
-        {
-            id: 1,
-            fileName: 'file1.txt',
-        },
-        {
-            id: 2,
-            fileName: 'file2.txt',
-        },
-    ])
+    const [files, setFiles] = useState([])
     const fileInputRef = useRef(null)
-
     const uploadFiles = acceptedFiles => {
-        setFiles(
-            acceptedFiles.map(file =>
-                Object.assign(file, {
-                    preview: URL.createObjectURL(file),
-                    id: Math.floor(Math.random() * 1000),
-                })
-            )
+        const newFiles = acceptedFiles.map(file =>
+            Object.assign(file, {
+                preview: URL.createObjectURL(file),
+                id: Math.floor(Math.random() * 1000),
+                fileName: file.name, // Add the file name to the object
+            })
         )
+
+        setFiles(prevFiles => [...prevFiles, ...newFiles]) // Append new files to the existing files array
     }
+
     const { getRootProps, getInputProps, isFocused, isDragActive } =
         useDropzone({
             accept: { 'text/*': ['.txt', '.md'] },
@@ -66,6 +58,7 @@ const Upload = ({ canStillUpload }) => {
                         >
                             <UploadIcon width={10} height={14} />
                             <input
+                                disabled={files.length >= 10}
                                 ref={fileInputRef}
                                 {...getInputProps()}
                                 style={{
@@ -101,17 +94,19 @@ const Upload = ({ canStillUpload }) => {
                 </StyledStillUpload>
 
                 <StyledContainerCounter>
-                    <span>0/10 caricati</span>
+                    <span>{files.length}/10 caricati</span>
                 </StyledContainerCounter>
 
-                <Button
-                    style={{
-                        marginTop: '16px',
-                    }}
-                    variant="ghost"
-                >
-                    Invia
-                </Button>
+                {!!files.length && (
+                    <Button
+                        style={{
+                            marginTop: '16px',
+                        }}
+                        variant="ghost"
+                    >
+                        Invia
+                    </Button>
+                )}
             </StyledContainer>
         </>
     )
