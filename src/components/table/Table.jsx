@@ -55,6 +55,14 @@ const Table = ({
             case 'created_at':
                 return dayjs(item[column.keyName]).format('DD/MM/YYYY')
 
+            case 'icon':
+                //aggiungi solo sulla primar riga l'icona
+                return item.id === 1 ? (
+                    <div>
+                        <HasAlertIcon width={16} height={16} />
+                    </div>
+                ) : null
+
             default:
                 return item[column.keyName]
         }

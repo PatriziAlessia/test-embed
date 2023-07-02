@@ -20,8 +20,6 @@ const Details = () => {
         getData()
     }, [])
 
-    console.log(data)
-
     const getData = async () => {
         try {
             const { data } = await DataAPI.getData.send()
@@ -36,15 +34,15 @@ const Details = () => {
             <StyledHomeContainer>
                 <StyledBox>
                     <StyledContainerTitle>
-                        <h1>Dettagli - {data.name}</h1>
-                        {data.has_alert && <HasAlertIcon />}
+                        <h1>Dettagli - {data?.name}</h1>
+                        {data?.has_alert && <HasAlertIcon />}
                     </StyledContainerTitle>
                     <StyledBox2>
                         <div>
-                            <p>{data.description}</p>
+                            <p>{data?.description}</p>
                         </div>
 
-                        <StyledCreatedAt>{data.created_at}</StyledCreatedAt>
+                        <StyledCreatedAt>{data?.created_at}</StyledCreatedAt>
                     </StyledBox2>
 
                     <div>

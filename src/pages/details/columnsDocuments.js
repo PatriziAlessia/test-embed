@@ -20,4 +20,10 @@ export const columnsDocuments = [
         title: 'Caricato il',
         keyName: 'created_at',
     },
+
+    {
+        id: 5,
+        title: '',
+        keyName: 'icon',
+    },
 ]

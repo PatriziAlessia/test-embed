@@ -20,4 +20,10 @@ export const columnsMatched = [
         title: 'Pubblicato il',
         keyName: 'created_at',
     },
+
+    {
+        id: 5,
+        title: '',
+        keyName: 'icon',
+    },
 ]
