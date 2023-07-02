@@ -36,9 +36,29 @@ const Home = () => {
             <Header />
             <StyledHomeContainer>
                 <StyledSubHeader>
-                    <div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            gap: '10px',
+                        }}
+                    >
                         <h1>Progetti</h1>
-                        <PlusIcon />
+                        <div
+                            style={{
+                                backgroundColor: 'gold',
+                                width: '20px',
+                                height: '20px',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            <PlusIcon />
+                        </div>
                     </div>
                     <Search
                         setDataFiltered={setDataFiltered}
