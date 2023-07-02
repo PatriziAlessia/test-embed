@@ -34,7 +34,7 @@ const Table = ({
             case 'has_alert':
                 return item[column.keyName] ? (
                     <div>
-                        <HasAlertIcon />
+                        <HasAlertIcon width={20} />
                     </div>
                 ) : null
             case 'edit_document':
@@ -56,7 +56,6 @@ const Table = ({
                 return dayjs(item[column.keyName]).format('DD/MM/YYYY')
 
             case 'icon':
-                //aggiungi solo sulla primar riga l'icona
                 return item.id === 1 ? (
                     <div>
                         <HasAlertIcon width={16} height={16} />

@@ -24,7 +24,6 @@ export const StyledSubHeader = styled.div`
             align-items: center;
             height: 40px;
             background-color: ${theme.palette.neutral.base[0]};
-            width: 100%;
             width: 850px;
         `
     }}
