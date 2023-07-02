@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { PlusIcon, SearchIcon } from '@/assets/icons/icons.jsx'
+import CreateForm from '@/components/form/create/CreateForm.jsx'
 import Header from '@/components/header/Header.jsx'
 import Search from '@/components/search/Search.jsx'
 import Table from '@/components/table/Table.jsx'
@@ -31,8 +32,11 @@ const Home = () => {
         navigate(`/${row}`)
     }
 
+    const [openForm, setOpenForm] = useState(false)
+
     return (
         <>
+            {openForm && <CreateForm onClose={() => setOpenForm(false)} />}
             <Header />
             <StyledHomeContainer>
                 <StyledSubHeader>
@@ -46,6 +50,7 @@ const Home = () => {
                     >
                         <h1>Progetti</h1>
                         <div
+                            onClick={() => setOpenForm(true)}
                             style={{
                                 backgroundColor: 'gold',
                                 width: '20px',

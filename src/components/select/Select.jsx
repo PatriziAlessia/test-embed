@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types'
 import { useCallback } from 'react'
-import { useController } from 'react-hook-form'
-import { components } from 'react-select'
+import CreatableSelect, { components } from 'react-select'
+import ReactSelect from 'react-select'
 import { useTheme } from 'styled-components'
 
-import { CloseIcon } from '@/assets/icons/icons'
-
 import {
-    StyledRoot,
-    StyledErrorMessage,
-    StyledCreatableSelect,
-    StyledReactSelect,
-} from './styles'
+    ArrowSelectIcon,
+    CloseSelectIcon,
+    RemoveIconMulti,
+} from '@/assets/icons/icons'
+import ErrorMessage from '@/components/error-message/ErrorMessage.jsx'
+import SelectField from '@/components/select/SelectControlled.jsx'
+
+import { StyledRoot, generalStyles, StyledLabel } from './styles'
 
 const Select = ({
     className,
@@ -25,6 +26,7 @@ const Select = ({
     isSearchable = false,
     isClearable = false,
     isCreatable = false,
+    required = false,
     addOptionMessage,
     maxItems = 100,
     isMulti,
@@ -32,23 +34,13 @@ const Select = ({
     closeMenuOnSelect = !isMulti,
     customComponents,
     disabled,
+    size = 'large',
+    onChange,
+    errors,
+    isControlled = true,
     ...rest
 }) => {
-    const {
-        field: { onChange, ...fieldProps },
-        fieldState: { error, isTouched },
-        formState,
-    } = useController({
-        name,
-        control,
-        defaultValue,
-    })
-
-    // This extends the default onChange
-    const onChangeHandler = value => {
-        if (typeof onChangeCallback === 'function') onChangeCallback(value)
-        if (!isMulti || (isMulti && value.length <= maxItems)) onChange(value) // Limit multi select
-    }
+    const theme = useTheme()
 
     // Label for new item creation
     const createLabel = useCallback(
@@ -70,62 +62,99 @@ const Select = ({
         isDisabled: rest.readOnly || disabled,
         classNamePrefix: isCreatable ? 'creatable_select' : 'select',
         placeholder,
-        error,
-        isTouched,
         disabled,
+        errors,
         ...rest,
     }
 
     const components = {
         MultiValueRemove,
+        DropdownIndicator,
+        ClearIndicator,
         ...customComponents,
+    }
+
+    const controlledSelectProps = {
+        ...selectProps,
+        components,
+        onChangeCallback,
+        control,
+        name,
+        defaultValue,
+        createLabel,
+        placeholder,
+        label,
+        errors,
+        maxItems,
+        isDisabled: rest.readOnly || disabled,
+    }
+
+    const selectComponent = () => {
+        switch (true) {
+            case isControlled:
+                return <SelectField {...controlledSelectProps} />
+            case isCreatable:
+                return (
+                    <CreatableSelect
+                        formatCreateLabel={createLabel}
+                        onChange={onChange}
+                        components={components}
+                        {...selectProps} // from Component
+                        styles={generalStyles(theme, size, errors, '')}
+                    />
+                )
+
+            default:
+                return (
+                    <ReactSelect
+                        onChange={onChange}
+                        components={components}
+                        {...selectProps}
+                        styles={generalStyles(
+                            theme,
+                            size,
+                            errors,
+                            'react-select'
+                        )}
+                    />
+                )
+        }
     }
 
     return (
         <StyledRoot className={className}>
-            {!!label && <label>{label}</label>}
-            {isCreatable ? (
-                <StyledCreatableSelect
-                    formatCreateLabel={createLabel}
-                    onChange={onChangeHandler}
-                    components={components}
-                    {...formState} // from Controller
-                    {...fieldProps} // from Controller
-                    {...selectProps} // from Component
-                />
-            ) : (
-                <StyledReactSelect
-                    onChange={onChangeHandler}
-                    components={components}
-                    {...formState}
-                    {...fieldProps}
-                    {...selectProps}
-                />
+            {!!label && (
+                <StyledLabel isDisabled={rest.readOnly || disabled}>
+                    {label} {required && ' *'}
+                </StyledLabel>
             )}
-            {!!error?.message && (
-                <div>
-                    <StyledErrorMessage>{error.message}</StyledErrorMessage>
-                </div>
-            )}
-            {!!helpText && (
-                <div>
-                    <small>{helpText}</small>
-                </div>
-            )}
+            {selectComponent()}
+            <ErrorMessage errors={errors} helpText={helpText} />
         </StyledRoot>
     )
 }
 
 const MultiValueRemove = props => {
-    const theme = useTheme()
     return (
         <components.MultiValueRemove {...props}>
-            <CloseIcon
-                fill={theme.palette.primary.base.text}
-                width={20}
-                height={20}
-            />
+            <RemoveIconMulti />
         </components.MultiValueRemove>
+    )
+}
+
+const DropdownIndicator = props => {
+    return (
+        <components.DropdownIndicator {...props}>
+            <ArrowSelectIcon />
+        </components.DropdownIndicator>
+    )
+}
+
+const ClearIndicator = props => {
+    return (
+        <components.ClearIndicator {...props}>
+            <CloseSelectIcon />
+        </components.ClearIndicator>
     )
 }
 
@@ -148,6 +177,11 @@ Select.propTypes = {
     isMulti: PropTypes.bool,
     onChangeCallback: PropTypes.func,
     closeMenuOnSelect: PropTypes.bool,
+    required: PropTypes.bool,
     customComponents: PropTypes.object,
     disabled: PropTypes.bool,
+    size: PropTypes.oneOf(['medium', 'large']),
+    onChange: PropTypes.func,
+    isControlled: PropTypes.bool,
+    errors: PropTypes.object,
 }
