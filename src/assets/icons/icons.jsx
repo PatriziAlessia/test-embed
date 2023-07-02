@@ -42,6 +42,19 @@ export const CloseIcon = ({ stroke, width = 20, ...props }) => {
         </svg>
     )
 }
+export const PlusIcon = ({
+    width = 10,
+    height = 10,
+    fill = '#FFFFFF',
+    ...props
+}) => (
+    <svg {...props} width={width} height={height} viewBox="0 0 10 10">
+        <path
+            fill={fill}
+            d="M9.083 5.583h-3.5v3.5H4.417v-3.5h-3.5V4.416h3.5v-3.5h1.166v3.5h3.5v1.167z"
+        ></path>
+    </svg>
+)
 
 export const HasAlertIcon = ({ width = 26, ...props }) => {
     return (

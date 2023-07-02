@@ -55,6 +55,8 @@ const LoginForm = () => {
                     errors={errors[LOGIN_MODEL.email]}
                     {...register(LOGIN_MODEL.email)}
                     icon={<MailIcon />}
+                    width={'100%'}
+                    size={'large'}
                 />
                 <Input
                     type={showPassword ? 'text' : 'password'}
@@ -66,6 +68,8 @@ const LoginForm = () => {
                     icon={<LockIcon />}
                     statusIcon={showPassword ? <EyeOpenIcon /> : <HideIcon />} // TODO: find new icon "EyeOpenIcon"
                     statusIconCallback={() => setShowPassword(!showPassword)}
+                    width={'100%'}
+                    size={'large'}
                 />
                 <Button
                     type={'button'}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { SearchIcon } from '@/assets/icons/icons.jsx'
+import { PlusIcon, SearchIcon } from '@/assets/icons/icons.jsx'
 import Header from '@/components/header/Header.jsx'
 import Search from '@/components/search/Search.jsx'
 import Table from '@/components/table/Table.jsx'
@@ -36,7 +36,10 @@ const Home = () => {
             <Header />
             <StyledHomeContainer>
                 <StyledSubHeader>
-                    <h1>Progetti</h1>
+                    <div>
+                        <h1>Progetti</h1>
+                        <PlusIcon />
+                    </div>
                     <Search
                         setDataFiltered={setDataFiltered}
                         data={data}

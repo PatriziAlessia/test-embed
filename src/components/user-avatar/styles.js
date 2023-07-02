@@ -28,8 +28,8 @@ export const StyledDiv = styled.div`
     justify-content: end;
     align-items: end;
     & svg {
-        width: 48px;
-        height: 48px;
+        width: 28px;
+        height: 28px;
     }
 `
 export const StyledContainer = styled.div`

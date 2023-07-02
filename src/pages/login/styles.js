@@ -1,14 +1,13 @@
 import styled, { css } from 'styled-components'
 
 export const StyledLoginFormRoot = styled.form`
-    ${({ theme }) => css`
-        display: grid;
-        gap: ${theme.spacing * 2}px;
-        width: 100%;
-        & button {
-            justify-self: center;
-        }
-    `}
+    display: grid;
+    gap: 30px;
+    width: 100%;
+    justify-items: center;
+    & button {
+        justify-self: center;
+    }
 `
 
 export const StyledLoginRoot = styled.div`
@@ -46,7 +45,7 @@ export const StyledLoginCard = styled.div`
 export const StyledLoginTitle = styled.h5`
     ${({ theme }) => css`
         margin-bottom: ${theme.spacing}px;
-        color: ${theme.palette.primary.base.text};
+        color: ${theme.palette.neutral.base[1000]};
         font-size: 28px;
         letter-spacing: 0.25px;
         font-weight: 700;

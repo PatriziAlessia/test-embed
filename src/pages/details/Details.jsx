@@ -36,7 +36,7 @@ const Details = () => {
             <StyledHomeContainer>
                 <StyledBox>
                     <StyledContainerTitle>
-                        <h1>Dettagli #{data.id}</h1>
+                        <h1>Dettagli - {data.name}</h1>
                         {data.has_alert && <HasAlertIcon />}
                     </StyledContainerTitle>
                     <StyledBox2>
