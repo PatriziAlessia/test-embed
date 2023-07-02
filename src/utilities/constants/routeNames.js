@@ -1,7 +1,5 @@
 // Public
 export const ROUTE_LOGIN = '/login'
-export const ROUTE_SIGNUP = '/signup'
-export const ROUTE_FORGOT_PASSWORD = '/forgot-password'
 
 // Authorized
 export const ROUTE_HOME = '/'

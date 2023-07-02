@@ -3,10 +3,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { MenuIcon, DoneIcon, LogoIcon } from '@/assets/icons/icons'
-import Button from '@/components/button/Button'
 import UserAvatar from '@/components/user-avatar/UserAvatar.jsx'
 import useUser from '@/hooks/useUser'
-import { ROUTE_LOGIN, ROUTE_SIGNUP } from '@/utilities/constants'
+import { ROUTE_LOGIN } from '@/utilities/constants'
 
 import {
     StyledHeaderRoot,
@@ -54,16 +53,6 @@ const Header = ({ isMobile = false }) => {
                         <LoginLink>
                             <Link to={ROUTE_LOGIN}> Log In </Link>
                         </LoginLink>
-                        <Button
-                            width={140}
-                            size={'medium'}
-                            variant={'filled'}
-                            onClick={() => {
-                                ;<Link to={ROUTE_SIGNUP} />
-                            }}
-                        >
-                            Sign-Up
-                        </Button>
                     </>
                 )}
             </StyledHeaderInfo>

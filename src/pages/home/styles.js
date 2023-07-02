@@ -26,6 +26,7 @@ export const StyledSubHeader = styled.div`
             background-color: ${theme.palette.neutral.base[0]};
             width: 100%;
             padding: 0 76px;
+            max-width: 70%;
         `
     }}
 `

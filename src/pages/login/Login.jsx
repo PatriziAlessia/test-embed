@@ -1,3 +1,5 @@
+import { LogoIcon } from '@/assets/icons/icons.jsx'
+
 import LoginForm from './login-form/LoginForm.jsx'
 import {
     StyledLoginRoot,
@@ -11,7 +13,9 @@ const Login = () => {
         <StyledLoginRoot>
             <StyledLoginCard>
                 <div>
-                    <StyledLoginTitle>Login</StyledLoginTitle>
+                    <StyledLoginTitle>
+                        <LogoIcon />
+                    </StyledLoginTitle>
                     <StyledLoginSubtitle>Enter data</StyledLoginSubtitle>
                 </div>
                 <LoginForm />
