@@ -28,7 +28,7 @@ const Home = () => {
 
     const navigate = useNavigate()
     const onClickRow = row => {
-        navigate(`/${row.id}`)
+        navigate(`/${row}`)
     }
 
     return (
