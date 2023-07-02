@@ -1,7 +1,6 @@
 import { css } from 'styled-components'
 
-const defaultFontFamily = `'Rubik', sans-serif`
-const secondaryFontFamily = `'Roboto', sans-serif`
+const defaultFontFamily = `'Mulish', sans-serif`
 
 export const typography = {
     heading1: css`
@@ -49,7 +48,7 @@ export const typography = {
     `,
 
     paragraph: css`
-        font-family: ${secondaryFontFamily};
+        font-family: ${defaultFontFamily};
         font-weight: 400;
         font-size: 1rem;
         line-height: 1.5rem;
@@ -57,7 +56,7 @@ export const typography = {
     `,
 
     small: css`
-        font-family: ${secondaryFontFamily};
+        font-family: ${defaultFontFamily};
         font-weight: 400;
         font-size: 0.875rem;
         line-height: 1.25rem;

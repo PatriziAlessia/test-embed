@@ -1,11 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { MailIcon, LockIcon, EyeOpenIcon, HideIcon } from '@/assets/icons/icons'
 import Button from '@/components/button/Button'
 import Input from '@/components/input/Input'
 import AuthAPI from '@/services/auth/auth.http.js'
+import { ROUTE_HOME } from '@/utilities/constants/index.js'
 
 import { StyledLoginFormRoot } from '../styles'
 
@@ -13,7 +15,7 @@ import { LOGIN_MODEL, validationSchema } from './LoginModel'
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false)
-
+    const navigate = useNavigate()
     const methods = useForm({
         shouldUnregister: false,
         mode: 'onChange',
@@ -65,7 +67,11 @@ const LoginForm = () => {
                     statusIcon={showPassword ? <EyeOpenIcon /> : <HideIcon />} // TODO: find new icon "EyeOpenIcon"
                     statusIconCallback={() => setShowPassword(!showPassword)}
                 />
-                <Button type={'submit'} width={'100%'}>
+                <Button
+                    type={'button'}
+                    width={'100%'}
+                    onClick={() => navigate(ROUTE_HOME)}
+                >
                     Login
                 </Button>
             </StyledLoginFormRoot>

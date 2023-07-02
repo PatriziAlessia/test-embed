@@ -15,13 +15,7 @@ const router = createBrowserRouter(
             children: [
                 {
                     element: <PrivateLayout withHeader />,
-                    children: [
-                        {
-                            exact: true,
-                            path: routeNames.ROUTE_HOME,
-                            element: <pages.Home />,
-                        },
-                    ],
+                    children: [],
                 },
             ],
         },
@@ -33,8 +27,23 @@ const router = createBrowserRouter(
                     children: [
                         {
                             exact: true,
+                            path: routeNames.ROUTE_HOME,
+                            element: <pages.Home />,
+                        },
+                        {
+                            exact: true,
+                            path: routeNames.ROUTE_DETAILS,
+                            element: <pages.Details />,
+                        },
+                        {
+                            exact: true,
                             path: routeNames.ROUTE_LOGIN,
                             element: <pages.Login />,
+                        },
+                        {
+                            exact: true,
+                            path: routeNames.ROUTE_UPLOAD,
+                            element: <pages.Upload />,
                         },
                     ],
                 },

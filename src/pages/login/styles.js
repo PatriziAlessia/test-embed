@@ -5,6 +5,9 @@ export const StyledLoginFormRoot = styled.form`
         display: grid;
         gap: ${theme.spacing * 2}px;
         width: 100%;
+        & button {
+            justify-self: center;
+        }
     `}
 `
 

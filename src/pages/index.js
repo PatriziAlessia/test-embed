@@ -1,3 +1,5 @@
 export { default as Home } from './home/Home.jsx'
+export { default as Details } from './details/Details.jsx'
 export { default as Login } from './login/Login.jsx'
 export { default as NotFound } from './not-found/NotFound.jsx'
+export { default as Upload } from './upload/Upload.jsx'

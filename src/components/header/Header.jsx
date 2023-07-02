@@ -2,15 +2,14 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { MenuIcon, DoneIcon } from '@/assets/icons/icons'
+import { MenuIcon, DoneIcon, LogoIcon } from '@/assets/icons/icons'
 import Button from '@/components/button/Button'
-import UserAvatar from '@/components/user-avatar/UserAvatar'
+import UserAvatar from '@/components/user-avatar/UserAvatar.jsx'
 import useUser from '@/hooks/useUser'
-import { ROUTE_LOGIN, ROUTE_SIGNUP, ROUTE_HOME } from '@/utilities/constants'
+import { ROUTE_LOGIN, ROUTE_SIGNUP } from '@/utilities/constants'
 
 import {
     StyledHeaderRoot,
-    StyledHeaderLogo,
     StyledHeaderInfo,
     StyledHeaderUserInfo,
     LoginLink,
@@ -35,19 +34,15 @@ const Header = ({ isMobile = false }) => {
         </StyledHeaderMobileRoot>
     ) : (
         <StyledHeaderRoot>
-            <StyledHeaderLogo>
-                <Link to={ROUTE_HOME}>
-                    <h3> Logo </h3>
-                </Link>
-            </StyledHeaderLogo>
+            <LogoIcon />
             <StyledHeaderInfo>
                 {user ? (
                     <>
                         <StyledHeaderUserInfo onClick={() => {}}>
                             <UserAvatar
                                 avatar={user?.avatar?.[128]}
-                                height={40}
-                                width={40}
+                                height={20}
+                                width={20}
                                 withBoxShadow={false}
                                 username={user?.username}
                             />{' '}

@@ -20,11 +20,11 @@ export const palette = {
                 text: '#9480E9',
             },
             base: {
-                active: '#7F63F4',
-                disabled: '#BDB4E7',
-                hover: '#5F42D9',
-                background: '#5F42D9',
-                text: '#361BA9',
+                active: '#ffd700', // giallo brillante
+                disabled: '#c2c2c2', // grigio chiaro
+                hover: '#ffcc00', // giallo scuro
+                background: '#000000', // nero
+                text: '#ffffff', // bianco per il testo
             },
             dark: {
                 active: '#6A4DE1',

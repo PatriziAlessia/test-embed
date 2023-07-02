@@ -10,7 +10,7 @@ const ResetStyles = createGlobalStyle`
 
   html, body, #root {
     height: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 16px;
     color: ${props => props.theme.palette.neutral[500]};
     background-color: ${props => props.theme.palette.neutral.white};
@@ -21,7 +21,7 @@ const ResetStyles = createGlobalStyle`
   body {
     min-height: 100vh;
   }
-  
+
   h1, h2, h3, h4, h5, h6, p, span, small {
     margin-bottom: 0;
   }
@@ -31,7 +31,7 @@ const ResetStyles = createGlobalStyle`
   span, label{
     font-size: max(0.875rem, min(1rem + 16vw, 0.875rem));
   }
-  
+
   a {
     color: ${props => props.theme.palette.primary.base.text};
     cursor: pointer;
@@ -53,6 +53,7 @@ const ResetStyles = createGlobalStyle`
 
   h1 {
     font-weight: 700;
+      font-size: 20px;
   }
   label, input, textarea, select, button {
     font-family: inherit;

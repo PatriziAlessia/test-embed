@@ -12,7 +12,7 @@ export const StyledHeaderRoot = styled.header`
         z-index: 1030;
         grid-template-columns: 1fr auto;
         padding: 0 ${theme.spacing * 2}px;
-        height: 80px;
+        height: 60px;
         box-shadow: ${theme.shadows[20]};
         background-color: ${theme.palette.neutral.base[0]};
         & img {
@@ -50,8 +50,7 @@ export const StyledHeaderInfo = styled.div`
 export const StyledHeaderUserInfo = styled.div`
     ${({ theme }) => css`
         background-color: ${theme.palette.neutral.base[200]};
-        padding: ${theme.spacing}px ${theme.spacing * 1.5}px ${theme.spacing}px
-            ${theme.spacing}px;
+        padding: 4px;
         border-radius: 100px;
         display: flex;
         gap: ${theme.spacing}px;
@@ -74,7 +73,7 @@ export const StyledHeaderMobileRoot = styled.header`
         grid-template-columns: 1fr auto;
         padding: 0 ${theme.spacing * 2}px;
         justify-content: center;
-        height: 80px;
+        height: 60px;
         box-shadow: ${theme.shadows[40]};
         background-color: ${theme.palette.neutral.base[0]};
         & img {

@@ -1,87 +1,31 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 
-import { SearchIcon, CloseIcon } from '@/assets/icons/icons'
+import { SearchIcon } from '@/assets/icons/icons'
+import Input from '@/components/input/Input.jsx'
 
-import {
-    StyledInpuSearchtWrapper,
-    StyledInputSearch,
-    StyledSearchIcon,
-} from './styles'
-
-const mockApi = query =>
-    new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const data = ['apple', 'banana', 'cherry', 'date', 'elderberry']
-            const results = data.filter(item =>
-                item.toLowerCase().includes(query.toLowerCase())
-            )
-            resolve(results)
-            reject(new Error('Error'))
-        }, 1000)
-    })
-
-const Search = ({ placeholder, rounded }) => {
-    const [searchTerm, setSearchTerm] = useState('')
-    const [results, setResults] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [timeoutId, setTimeoutId] = useState()
-
-    const handleSearch = event => {
-        const value = event.target.value
-        setSearchTerm(value)
-
-        clearTimeout(timeoutId)
-
-        if (value) {
-            setLoading(true)
-            const id = setTimeout(() => {
-                mockApi(value).then(data => {
-                    setResults(data)
-                    setLoading(false)
-                })
-            }, 500)
-            setTimeoutId(id)
+const Search = ({ placeholder, data, setDataFiltered }) => {
+    const search = event => {
+        if (event.target.value === '') {
+            setDataFiltered(data)
+            return
         } else {
-            setResults([])
-            setLoading(false)
+            const newData = data.filter(item => {
+                const itemData = item.name.toLowerCase()
+                const textData = event.target.value.toLowerCase()
+                return itemData.indexOf(textData) > -1
+            })
+            setDataFiltered(newData)
         }
     }
 
-    const handleReset = () => {
-        setSearchTerm('')
-        setResults([])
-        setLoading(false)
-        clearTimeout(timeoutId)
-    }
-
     return (
-        <>
-            <StyledInpuSearchtWrapper>
-                <StyledSearchIcon position={'left'} cursor={'initial'}>
-                    <SearchIcon fill={'#3E3B4C'} />
-                </StyledSearchIcon>
-                <StyledInputSearch
-                    type="text"
-                    placeholder={placeholder}
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    rounded={rounded}
-                ></StyledInputSearch>
-                <StyledSearchIcon position={'right'} cursor={'pointer'}>
-                    <CloseIcon onClick={handleReset} />
-                </StyledSearchIcon>
-            </StyledInpuSearchtWrapper>
-            {loading && <div>Loading...</div>}
-            {!loading && results.length === 0 && <div>No results found</div>}
-            {!loading && results.length > 0 && (
-                <ul>
-                    {results.map(item => (
-                        <li key={item}>{item}</li>
-                    ))}
-                </ul>
-            )}
-        </>
+        <Input
+            icon={<SearchIcon />}
+            iconPosition={'left'}
+            placeholder={placeholder}
+            onChange={event => search(event)}
+            size={'medium'}
+        />
     )
 }
 
@@ -89,5 +33,6 @@ export default Search
 
 Search.propTypes = {
     placeholder: PropTypes.string,
-    rounded: PropTypes.bool,
+    data: PropTypes.array,
+    setDataFiltered: PropTypes.func,
 }

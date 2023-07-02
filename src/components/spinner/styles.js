@@ -31,7 +31,7 @@ export const StyledOverlay = styled.div`
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: ${theme.palette.neutral.base[1000]};
+        background-color: ${theme.palette.neutral.base[200]};
     `}
 `
 
